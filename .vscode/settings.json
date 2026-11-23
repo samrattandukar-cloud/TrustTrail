@@ -1,0 +1,23 @@
+{
+  "dart.flutterSdkPath": "C:\\Users\\Nitro V 16\\Fluttersdk\\flutter",
+  "dart.env": {
+    "PUB_CACHE": "D:\\pub-cache",
+    "GRADLE_USER_HOME": "D:\\gradle-home",
+    "JAVA_HOME": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.13.9-hotspot",
+    "TEMP": "D:\\Temp",
+    "TMP": "D:\\Temp"
+  },
+  "editor.formatOnSave": true,
+  "dart.lineLength": 100,
+  "files.exclude": {
+    "build": true,
+    ".dart_tool": true,
+    "**/.flutter-plugins": true
+  },
+  "[dart]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  }
+}
