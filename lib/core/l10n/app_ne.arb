@@ -34,6 +34,7 @@
   "navReminders": "रिमाइन्डर",
   "navProfile": "प्रोफाइल",
   "navSaved": "सुरक्षित",
+  "navBrowse": "ब्राउज",
   "lookupMissTitle": "त्यो रिपोर्ट भेटिएन",
   "lookupMissBody": "अर्को यन्त्रमा बनाइएका टोकन यहाँ हुँदैनन्। विक्रेतासँग PDF माग्नुहोस्।",
   "loginNoAccount": "त्यो नम्बरको खाता भेटिएन। तल आफ्नो खाता बनाउनुहोस्।",
@@ -346,5 +347,38 @@
   "metricAvgKmMonth": "औसत किमी/महिना",
   "metricOdometerFlags": "ओडोमिटर चेतावनी",
   "metricGaps": "खाडल",
-  "metricFirstRecord": "पहिलो रेकर्ड"
+  "metricFirstRecord": "पहिलो रेकर्ड",
+  "browseTitle": "बजार",
+  "browseSubtitle": "मालिकले अभिलेख गरेको इतिहाससहितका दोस्रो हातका वाहन। विज्ञापन खोलेर रिपोर्ट हेर्नुहोस्।",
+  "demoListingsNote": "डेमो सूची — विक्रेता, मूल्य र स्थान काल्पनिक हुन्। प्रत्येकले यही यन्त्रको स्थिर स्न्यापसट खोल्छ।",
+  "noListingsTitle": "कुनै सूची उपलब्ध छैन",
+  "noListingsBody": "नमुना सूची फर्काउन सेटिङमा डेमो डाटा रिसेट गर्नुहोस्।",
+  "listedAgo": "{count, plural, =1{१ दिनअघि सूचीबद्ध} other{{count} दिनअघि सूचीबद्ध}}",
+  "@listedAgo": { "placeholders": { "count": { "type": "int" } } },
+  "demoListingBadge": "डेमो",
+  "vehicleHistory": "वाहन इतिहास",
+  "historyAtAGlance": "एक नजरमा इतिहास",
+  "glanceChecklist": "चेकलिस्ट",
+  "glanceRecords": "रेकर्ड",
+  "glanceEvidence": "प्रमाण",
+  "glanceOdometer": "ओडोमिटर जाँच",
+  "glanceGaps": "रेकर्ड खाडल",
+  "glanceOwnership": "स्वामित्व प्रविष्टि",
+  "glanceNoIssues": "समस्या भेटिएन",
+  "glanceNoGaps": "लामो खाडल छैन",
+  "glanceFlags": "{count, plural, =1{१ रिडिङ चेतावनी} other{{count} रिडिङ चेतावनी}}",
+  "@glanceFlags": { "placeholders": { "count": { "type": "int" } } },
+  "glanceGapsCount": "{count, plural, =1{१२० दिनभन्दा लामो १ खाडल} other{१२० दिनभन्दा लामो {count} खाडल}}",
+  "@glanceGapsCount": { "placeholders": { "count": { "type": "int" } } },
+  "glanceOwnershipSub": "मालिकको अभिलेखअनुसार",
+  "glanceComputedNote": "गणना यही स्थिर स्न्यापसटबाट गरिएको हो। नदेखिएको प्रविष्टि भन्नाले अभिलेख साझा नगरिएको हो।",
+  "reportHeroListedBy": "{name} द्वारा सूचीबद्ध",
+  "@reportHeroListedBy": { "placeholders": { "name": { "type": "String" } } },
+  "documentedOf": "{filled}/{total} दस्तावेजीकृत",
+  "@documentedOf": {
+    "placeholders": {
+      "filled": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

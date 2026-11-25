@@ -8,6 +8,7 @@ import '../core/utils/token_codec.dart';
 import '../core/widgets/tt_bottom_nav.dart';
 import '../data/models/user.dart';
 import '../features/auth/session.dart';
+import '../features/buyer/browse_listings_screen.dart';
 import '../features/buyer/buyer_result_screen.dart';
 import '../features/buyer/buyer_search_screen.dart';
 import '../features/buyer/saved_reports_screen.dart';
@@ -41,37 +42,45 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     ref.listen(
       sessionProvider.select((value) => value.value?.role ?? UserRole.owner),
       (previous, next) {
-        if (_reportSelecting) {
-          setState(() => _reportSelecting = false);
-        }
+        if (previous == next) return;
+        // Each role has its own page set, so restart from the first tab.
+        setState(() {
+          _index = 0;
+          _reportSelecting = false;
+        });
       },
     );
 
-    final pages = [
-      isBuyer
-          ? SavedReportsScreen(
+    final pages = isBuyer
+        ? [
+            const BrowseListingsScreen(),
+            const BuyerSearchScreen(),
+            SavedReportsScreen(
               embedded: true,
               onSelectingChanged: (selecting) {
                 if (_reportSelecting != selecting) {
                   setState(() => _reportSelecting = selecting);
                 }
               },
-            )
-          : GarageScreen(
-              onOpenReminders: () => setState(() => _index = 2),
+            ),
+            ProfileScreen(onOpenSaved: () => setState(() => _index = 2)),
+          ]
+        : [
+            GarageScreen(
+              onOpenReminders: _openReminders,
               onOpenProfile: () => setState(() => _index = 3),
             ),
-      const BuyerSearchScreen(),
-      const RemindersScreen(),
-      ProfileScreen(
-        onOpenReminders: () => setState(() => _index = 2),
-        onOpenSaved: () => setState(() => _index = 0),
-      ),
-    ];
+            const BrowseListingsScreen(),
+            const BuyerSearchScreen(),
+            ProfileScreen(
+              onOpenReminders: _openReminders,
+              onOpenSaved: _openSavedReports,
+            ),
+          ];
 
     return Scaffold(
       body: IndexedStack(index: _index, children: pages),
-      floatingActionButton: _index == 3 || _reportSelecting
+      floatingActionButton: _index == pages.length - 1 || _reportSelecting
           ? null
           : FloatingActionButton(
               onPressed: isBuyer ? _scan : _add,
@@ -89,22 +98,35 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       bottomNavigationBar: TtBottomNav(
         index: _index,
         onSelect: (value) => setState(() => _index = value),
-        labels: [
-          isBuyer ? l10n.navSaved : l10n.navGarage,
-          l10n.navSearch,
-          l10n.navReminders,
-          l10n.navProfile,
-        ],
-        icons: [
-          isBuyer
-              ? Icons.bookmark_outline_rounded
-              : Icons.directions_car_outlined,
-          Icons.search_rounded,
-          Icons.notifications_outlined,
-          Icons.person_outline_rounded,
-        ],
+        labels: isBuyer
+            ? [l10n.navBrowse, l10n.navSearch, l10n.navSaved, l10n.navProfile]
+            : [l10n.navGarage, l10n.navBrowse, l10n.navSearch, l10n.navProfile],
+        icons: isBuyer
+            ? [
+                Icons.storefront_outlined,
+                Icons.search_rounded,
+                Icons.bookmark_outline_rounded,
+                Icons.person_outline_rounded,
+              ]
+            : [
+                Icons.directions_car_outlined,
+                Icons.storefront_outlined,
+                Icons.search_rounded,
+                Icons.person_outline_rounded,
+              ],
       ),
     );
+  }
+
+  Future<void> _openReminders() {
+    return Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const RemindersScreen()));
+  }
+
+  Future<void> _openSavedReports() {
+    return Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const SavedReportsScreen()));
   }
 
   Future<void> _scan() async {

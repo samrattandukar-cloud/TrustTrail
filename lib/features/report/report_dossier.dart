@@ -25,12 +25,16 @@ class ReportDossier extends StatelessWidget {
     this.onRecordTap,
     this.showObservations = true,
     this.categoryFilter,
+    this.showVehicleCard = true,
+    this.showCompletenessCard = true,
   });
 
   final ReportMatch match;
   final void Function(Map<String, Object?> record)? onRecordTap;
   final bool showObservations;
   final String? categoryFilter;
+  final bool showVehicleCard;
+  final bool showCompletenessCard;
 
   @override
   Widget build(BuildContext context) {
@@ -80,111 +84,118 @@ class ReportDossier extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TtCard(
-          padding: EdgeInsets.zero,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              VehiclePhoto(
-                asset: photo == null
-                    ? null
-                    : photo.startsWith('asset:')
-                    ? photo.substring(6)
-                    : photo,
-                height: 168,
-                width: double.infinity,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '${vehicle['make']} ${vehicle['model']}',
-                            style: TtType.title(palette.textPrimary, size: 20),
-                          ),
-                        ),
-                        TtPill(
-                          label: match.snapshot.token,
-                          icon: Icons.qr_code_2_rounded,
-                          foreground: palette.primary,
-                          background: palette.surfaceRaised,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${vehicle['plate_roman']} · ${vehicle['year_ad']} · '
-                      '${fuelLabel('${vehicle['fuel']}', l10n)} · '
-                      '${transmissionLabel('${vehicle['transmission']}', l10n)}',
-                      style: TtType.caption(palette.textSecondary),
-                    ),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 6,
-                      children: [
-                        TtPill(
-                          label:
-                              '${Fmt.number(vehicle['latestKm'] as int? ?? 0)} km',
-                          icon: Icons.speed_rounded,
-                        ),
-                        TtPill(
-                          label: l10n.recordsCount(records.length),
-                          icon: Icons.receipt_long_outlined,
-                        ),
-                        if (vehicle['province'] != null)
-                          TtPill(
-                            label: provinceLabel(
-                              '${vehicle['province']}',
-                              l10n,
+        if (showVehicleCard) ...[
+          TtCard(
+            padding: EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                VehiclePhoto(
+                  asset: photo == null
+                      ? null
+                      : photo.startsWith('asset:')
+                      ? photo.substring(6)
+                      : photo,
+                  height: 168,
+                  width: double.infinity,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${vehicle['make']} ${vehicle['model']}',
+                              style: TtType.title(
+                                palette.textPrimary,
+                                size: 20,
+                              ),
                             ),
-                            icon: Icons.place_outlined,
                           ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      l10n.generatedOn(
-                        BsDate.both(generated, nepali: context.isNepali),
+                          TtPill(
+                            label: match.snapshot.token,
+                            icon: Icons.qr_code_2_rounded,
+                            foreground: palette.primary,
+                            background: palette.surfaceRaised,
+                          ),
+                        ],
                       ),
-                      style: TtType.caption(palette.textSecondary, size: 11),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: TtSpace.x3),
-        TtCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TtCompletenessMeter(
-                filled: completeness['filled'] as int,
-                total: completeness['total'] as int,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                missing.isEmpty
-                    ? l10n.allSectionsPresent
-                    : l10n.missingListLabel(
-                        missing
-                            .map((raw) => sectionLabel(raw, l10n))
-                            .join(', '),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${vehicle['plate_roman']} · ${vehicle['year_ad']} · '
+                        '${fuelLabel('${vehicle['fuel']}', l10n)} · '
+                        '${transmissionLabel('${vehicle['transmission']}', l10n)}',
+                        style: TtType.caption(palette.textSecondary),
                       ),
-                style: TtType.caption(
-                  missing.isEmpty ? palette.success : palette.textSecondary,
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          TtPill(
+                            label:
+                                '${Fmt.number(vehicle['latestKm'] as int? ?? 0)} km',
+                            icon: Icons.speed_rounded,
+                          ),
+                          TtPill(
+                            label: l10n.recordsCount(records.length),
+                            icon: Icons.receipt_long_outlined,
+                          ),
+                          if (vehicle['province'] != null)
+                            TtPill(
+                              label: provinceLabel(
+                                '${vehicle['province']}',
+                                l10n,
+                              ),
+                              icon: Icons.place_outlined,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        l10n.generatedOn(
+                          BsDate.both(generated, nepali: context.isNepali),
+                        ),
+                        style: TtType.caption(palette.textSecondary, size: 11),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: TtSpace.x3),
+          const SizedBox(height: TtSpace.x3),
+        ],
+        if (showCompletenessCard) ...[
+          TtCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TtCompletenessMeter(
+                  filled: completeness['filled'] as int,
+                  total: completeness['total'] as int,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  missing.isEmpty
+                      ? l10n.allSectionsPresent
+                      : l10n.missingListLabel(
+                          missing
+                              .map((raw) => sectionLabel(raw, l10n))
+                              .join(', '),
+                        ),
+                  style: TtType.caption(
+                    missing.isEmpty ? palette.success : palette.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: TtSpace.x3),
+        ],
         TtCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

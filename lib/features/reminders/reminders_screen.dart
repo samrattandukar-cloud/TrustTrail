@@ -76,7 +76,6 @@ class RemindersScreen extends ConsumerWidget {
           ),
           children: [
             TtAppHeader(
-              showBack: false,
               eyebrow: l10n.remindersTitle,
               title: l10n.remindersTitle,
               subtitle: l10n.remindersIntro,

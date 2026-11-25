@@ -35,6 +35,7 @@
   "navReminders": "Reminders",
   "navProfile": "Profile",
   "navSaved": "Saved",
+  "navBrowse": "Browse",
   "lookupMissTitle": "We couldn't find that report",
   "lookupMissBody": "Tokens created on another device don't exist here. Ask the seller for the PDF.",
   "loginNoAccount": "No account found for that number. Create your account below.",
@@ -447,5 +448,38 @@
   "metricAvgKmMonth": "Avg km/month",
   "metricOdometerFlags": "Odometer flags",
   "metricGaps": "Gaps",
-  "metricFirstRecord": "First record"
+  "metricFirstRecord": "First record",
+  "browseTitle": "Marketplace",
+  "browseSubtitle": "Second-hand vehicles with an owner-recorded history. Open an ad to read the report.",
+  "demoListingsNote": "Demo listings — sellers, prices and areas are fictitious. Each opens a frozen snapshot from this device.",
+  "noListingsTitle": "No listings available",
+  "noListingsBody": "Reset the demo data in Settings to restore the sample listings.",
+  "listedAgo": "{count, plural, =1{Listed 1 day ago} other{Listed {count} days ago}}",
+  "@listedAgo": { "placeholders": { "count": { "type": "int" } } },
+  "demoListingBadge": "Demo",
+  "vehicleHistory": "Vehicle history",
+  "historyAtAGlance": "History at a glance",
+  "glanceChecklist": "Checklist",
+  "glanceRecords": "Records",
+  "glanceEvidence": "Evidence",
+  "glanceOdometer": "Odometer checks",
+  "glanceGaps": "Record gaps",
+  "glanceOwnership": "Ownership entries",
+  "glanceNoIssues": "No issues found",
+  "glanceNoGaps": "No long gaps",
+  "glanceFlags": "{count, plural, =1{1 reading flagged} other{{count} readings flagged}}",
+  "@glanceFlags": { "placeholders": { "count": { "type": "int" } } },
+  "glanceGapsCount": "{count, plural, =1{1 gap over 120 days} other{{count} gaps over 120 days}}",
+  "@glanceGapsCount": { "placeholders": { "count": { "type": "int" } } },
+  "glanceOwnershipSub": "As recorded by the owner",
+  "glanceComputedNote": "Counts come from this frozen snapshot. A missing entry means no record was shared.",
+  "reportHeroListedBy": "Listed by {name}",
+  "@reportHeroListedBy": { "placeholders": { "name": { "type": "String" } } },
+  "documentedOf": "{filled} of {total} documented",
+  "@documentedOf": {
+    "placeholders": {
+      "filled": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

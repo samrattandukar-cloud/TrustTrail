@@ -178,21 +178,22 @@ class ProfileScreen extends ConsumerWidget {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                if (isOwner)
+                _MenuRow(
+                  icon: Icons.bookmark_border_rounded,
+                  title: l10n.savedReports,
+                  subtitle: l10n.savedReportsHint,
+                  onTap: onOpenSaved,
+                ),
+                Divider(height: 1, color: palette.border),
+                if (isOwner) ...[
                   _MenuRow(
                     icon: Icons.notifications_none_rounded,
                     title: l10n.remindersTitle,
                     subtitle: l10n.noRemindersBody,
                     onTap: onOpenReminders,
-                  )
-                else
-                  _MenuRow(
-                    icon: Icons.bookmark_border_rounded,
-                    title: l10n.savedReports,
-                    subtitle: l10n.savedReportsHint,
-                    onTap: onOpenSaved,
                   ),
-                Divider(height: 1, color: palette.border),
+                  Divider(height: 1, color: palette.border),
+                ],
                 _MenuRow(
                   icon: Icons.tune_rounded,
                   title: l10n.settingsTitle,

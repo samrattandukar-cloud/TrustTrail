@@ -115,6 +115,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navSaved => 'Saved';
 
   @override
+  String get navBrowse => 'Browse';
+
+  @override
   String get lookupMissTitle => 'We couldn\'t find that report';
 
   @override
@@ -1240,4 +1243,105 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get metricFirstRecord => 'First record';
+
+  @override
+  String get browseTitle => 'Marketplace';
+
+  @override
+  String get browseSubtitle =>
+      'Second-hand vehicles with an owner-recorded history. Open an ad to read the report.';
+
+  @override
+  String get demoListingsNote =>
+      'Demo listings — sellers, prices and areas are fictitious. Each opens a frozen snapshot from this device.';
+
+  @override
+  String get noListingsTitle => 'No listings available';
+
+  @override
+  String get noListingsBody =>
+      'Reset the demo data in Settings to restore the sample listings.';
+
+  @override
+  String listedAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Listed $count days ago',
+      one: 'Listed 1 day ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get demoListingBadge => 'Demo';
+
+  @override
+  String get vehicleHistory => 'Vehicle history';
+
+  @override
+  String get historyAtAGlance => 'History at a glance';
+
+  @override
+  String get glanceChecklist => 'Checklist';
+
+  @override
+  String get glanceRecords => 'Records';
+
+  @override
+  String get glanceEvidence => 'Evidence';
+
+  @override
+  String get glanceOdometer => 'Odometer checks';
+
+  @override
+  String get glanceGaps => 'Record gaps';
+
+  @override
+  String get glanceOwnership => 'Ownership entries';
+
+  @override
+  String get glanceNoIssues => 'No issues found';
+
+  @override
+  String get glanceNoGaps => 'No long gaps';
+
+  @override
+  String glanceFlags(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count readings flagged',
+      one: '1 reading flagged',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String glanceGapsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gaps over 120 days',
+      one: '1 gap over 120 days',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get glanceOwnershipSub => 'As recorded by the owner';
+
+  @override
+  String get glanceComputedNote =>
+      'Counts come from this frozen snapshot. A missing entry means no record was shared.';
+
+  @override
+  String reportHeroListedBy(String name) {
+    return 'Listed by $name';
+  }
+
+  @override
+  String documentedOf(int filled, int total) {
+    return '$filled of $total documented';
+  }
 }

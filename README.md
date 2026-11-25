@@ -1,8 +1,9 @@
 # TrustTrail
 
 Evidence-based vehicle history for Nepal's second-hand market. Owners record
-services, insurance, road tax, repairs and inspections with receipts; buyers see
-a neutral timeline, odometer trend, gap notes and a **completion meter — not a
+services, insurance, road tax, repairs and inspections with receipts; buyers
+browse marketplace-style demo listings that open a neutral report: history at a
+glance, timeline, odometer trend, gap notes and a **completion meter — not a
 trust score**.
 
 Built for **CIS099-2 Mobile Application Development, Assessment 1 (Option 1)**.
@@ -46,8 +47,10 @@ The emulator used during development is `Pixel_8a` (Android SDK at `D:\AndroidSd
   appears when registering a new account (any six digits work).
 - Seeded vehicles: Honda Shine 125 (7/10 complete), Hyundai Creta SX.
 - Buyer tokens: `TT-SHIN-2026`, `TT-FZS-2026` (14-month gap), `TT-GRND-2026`
-  (odometer decrease). Search the plate or token, or scan the QR in-app. In
-  buyer mode, **Saved → Try a sample report** lists the same tokens.
+  (odometer decrease). The **Browse** tab (available in both owner and buyer
+  mode) shows the same three as marketplace-style demo listings (fictitious
+  prices, sellers and areas); the **Search** tab looks up a plate, token or QR,
+  and in buyer mode **Saved** keeps reports for comparison.
 - **Settings → Demo data → Reset demo data** wipes local rows and reseeds.
 
 ## What to demo (≤5 minutes)
@@ -56,9 +59,10 @@ The emulator used during development is `Pixel_8a` (Android SDK at `D:\AndroidSd
 2. Open Honda Shine → timeline, odometer chart, gap note, share report.
 3. Add a service record, attach a receipt, watch completeness and evidence counts.
 4. Generate report → preview → share PDF or show QR/copy token.
-5. Switch to buyer mode → **Saved** tab → **Try a sample report** (or search
-   `TT-FZS-2026`) → odometer gap + filters → save two reports and compare them
-   side by side.
+5. Open **Browse** (works in both modes) → open the Yamaha FZ-S listing →
+   history hero, at-a-glance checks, odometer gap + filters → save it, then
+   open a second listing, save it and compare the two side by side under
+   **Saved** (buyer mode).
 6. Settings → Nepali, dark mode; submit the SUS survey and export CSV.
 
 ## Architecture

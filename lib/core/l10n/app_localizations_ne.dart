@@ -115,6 +115,9 @@ class AppLocalizationsNe extends AppLocalizations {
   String get navSaved => 'सुरक्षित';
 
   @override
+  String get navBrowse => 'ब्राउज';
+
+  @override
   String get lookupMissTitle => 'त्यो रिपोर्ट भेटिएन';
 
   @override
@@ -1236,4 +1239,105 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get metricFirstRecord => 'पहिलो रेकर्ड';
+
+  @override
+  String get browseTitle => 'बजार';
+
+  @override
+  String get browseSubtitle =>
+      'मालिकले अभिलेख गरेको इतिहाससहितका दोस्रो हातका वाहन। विज्ञापन खोलेर रिपोर्ट हेर्नुहोस्।';
+
+  @override
+  String get demoListingsNote =>
+      'डेमो सूची — विक्रेता, मूल्य र स्थान काल्पनिक हुन्। प्रत्येकले यही यन्त्रको स्थिर स्न्यापसट खोल्छ।';
+
+  @override
+  String get noListingsTitle => 'कुनै सूची उपलब्ध छैन';
+
+  @override
+  String get noListingsBody =>
+      'नमुना सूची फर्काउन सेटिङमा डेमो डाटा रिसेट गर्नुहोस्।';
+
+  @override
+  String listedAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दिनअघि सूचीबद्ध',
+      one: '१ दिनअघि सूचीबद्ध',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get demoListingBadge => 'डेमो';
+
+  @override
+  String get vehicleHistory => 'वाहन इतिहास';
+
+  @override
+  String get historyAtAGlance => 'एक नजरमा इतिहास';
+
+  @override
+  String get glanceChecklist => 'चेकलिस्ट';
+
+  @override
+  String get glanceRecords => 'रेकर्ड';
+
+  @override
+  String get glanceEvidence => 'प्रमाण';
+
+  @override
+  String get glanceOdometer => 'ओडोमिटर जाँच';
+
+  @override
+  String get glanceGaps => 'रेकर्ड खाडल';
+
+  @override
+  String get glanceOwnership => 'स्वामित्व प्रविष्टि';
+
+  @override
+  String get glanceNoIssues => 'समस्या भेटिएन';
+
+  @override
+  String get glanceNoGaps => 'लामो खाडल छैन';
+
+  @override
+  String glanceFlags(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count रिडिङ चेतावनी',
+      one: '१ रिडिङ चेतावनी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String glanceGapsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '१२० दिनभन्दा लामो $count खाडल',
+      one: '१२० दिनभन्दा लामो १ खाडल',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get glanceOwnershipSub => 'मालिकको अभिलेखअनुसार';
+
+  @override
+  String get glanceComputedNote =>
+      'गणना यही स्थिर स्न्यापसटबाट गरिएको हो। नदेखिएको प्रविष्टि भन्नाले अभिलेख साझा नगरिएको हो।';
+
+  @override
+  String reportHeroListedBy(String name) {
+    return '$name द्वारा सूचीबद्ध';
+  }
+
+  @override
+  String documentedOf(int filled, int total) {
+    return '$filled/$total दस्तावेजीकृत';
+  }
 }

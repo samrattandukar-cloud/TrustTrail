@@ -302,6 +302,12 @@ abstract class AppLocalizations {
   /// **'Saved'**
   String get navSaved;
 
+  /// No description provided for @navBrowse.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse'**
+  String get navBrowse;
+
   /// No description provided for @lookupMissTitle.
   ///
   /// In en, this message translates to:
@@ -2184,6 +2190,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'First record'**
   String get metricFirstRecord;
+
+  /// No description provided for @browseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketplace'**
+  String get browseTitle;
+
+  /// No description provided for @browseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Second-hand vehicles with an owner-recorded history. Open an ad to read the report.'**
+  String get browseSubtitle;
+
+  /// No description provided for @demoListingsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo listings — sellers, prices and areas are fictitious. Each opens a frozen snapshot from this device.'**
+  String get demoListingsNote;
+
+  /// No description provided for @noListingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No listings available'**
+  String get noListingsTitle;
+
+  /// No description provided for @noListingsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset the demo data in Settings to restore the sample listings.'**
+  String get noListingsBody;
+
+  /// No description provided for @listedAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Listed 1 day ago} other{Listed {count} days ago}}'**
+  String listedAgo(int count);
+
+  /// No description provided for @demoListingBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo'**
+  String get demoListingBadge;
+
+  /// No description provided for @vehicleHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle history'**
+  String get vehicleHistory;
+
+  /// No description provided for @historyAtAGlance.
+  ///
+  /// In en, this message translates to:
+  /// **'History at a glance'**
+  String get historyAtAGlance;
+
+  /// No description provided for @glanceChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklist'**
+  String get glanceChecklist;
+
+  /// No description provided for @glanceRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get glanceRecords;
+
+  /// No description provided for @glanceEvidence.
+  ///
+  /// In en, this message translates to:
+  /// **'Evidence'**
+  String get glanceEvidence;
+
+  /// No description provided for @glanceOdometer.
+  ///
+  /// In en, this message translates to:
+  /// **'Odometer checks'**
+  String get glanceOdometer;
+
+  /// No description provided for @glanceGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Record gaps'**
+  String get glanceGaps;
+
+  /// No description provided for @glanceOwnership.
+  ///
+  /// In en, this message translates to:
+  /// **'Ownership entries'**
+  String get glanceOwnership;
+
+  /// No description provided for @glanceNoIssues.
+  ///
+  /// In en, this message translates to:
+  /// **'No issues found'**
+  String get glanceNoIssues;
+
+  /// No description provided for @glanceNoGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'No long gaps'**
+  String get glanceNoGaps;
+
+  /// No description provided for @glanceFlags.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 reading flagged} other{{count} readings flagged}}'**
+  String glanceFlags(int count);
+
+  /// No description provided for @glanceGapsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 gap over 120 days} other{{count} gaps over 120 days}}'**
+  String glanceGapsCount(int count);
+
+  /// No description provided for @glanceOwnershipSub.
+  ///
+  /// In en, this message translates to:
+  /// **'As recorded by the owner'**
+  String get glanceOwnershipSub;
+
+  /// No description provided for @glanceComputedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Counts come from this frozen snapshot. A missing entry means no record was shared.'**
+  String get glanceComputedNote;
+
+  /// No description provided for @reportHeroListedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Listed by {name}'**
+  String reportHeroListedBy(String name);
+
+  /// No description provided for @documentedOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{filled} of {total} documented'**
+  String documentedOf(int filled, int total);
 }
 
 class _AppLocalizationsDelegate

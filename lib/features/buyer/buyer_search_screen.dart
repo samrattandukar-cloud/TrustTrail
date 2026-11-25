@@ -7,15 +7,14 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/widgets/tt_buttons.dart';
-import '../../core/widgets/tt_card.dart';
 import '../../core/widgets/tt_headers.dart';
 import '../../core/widgets/tt_status_banner.dart';
 import '../../core/widgets/tt_text_field.dart';
 import '../../data/local/seed/seed_data.dart';
+import '../../data/models/user.dart';
 import '../../data/repositories/repositories.dart';
-import '../report/report_providers.dart';
+import '../auth/session.dart';
 import 'buyer_result_screen.dart';
-import 'saved_reports_screen.dart';
 import 'scan_screen.dart';
 
 class BuyerSearchScreen extends ConsumerStatefulWidget {
@@ -96,18 +95,13 @@ class _BuyerSearchScreenState extends ConsumerState<BuyerSearchScreen> {
     await _search(code);
   }
 
-  Future<void> _openSaved() async {
-    await Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (_) => const SavedReportsScreen()));
-    ref.invalidate(savedReportsProvider);
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final palette = context.palette;
-    final saved = ref.watch(savedReportsProvider).value ?? const [];
+    final role = ref.watch(
+      sessionProvider.select((value) => value.value?.role ?? UserRole.owner),
+    );
 
     return SafeArea(
       bottom: false,
@@ -121,7 +115,7 @@ class _BuyerSearchScreenState extends ConsumerState<BuyerSearchScreen> {
         children: [
           TtAppHeader(
             showBack: false,
-            eyebrow: l10n.modeBuyer,
+            eyebrow: role == UserRole.buyer ? l10n.modeBuyer : l10n.modeOwner,
             title: l10n.buyerSearchTitle,
             subtitle: l10n.buyerRoleBody,
           ),
@@ -179,46 +173,6 @@ class _BuyerSearchScreenState extends ConsumerState<BuyerSearchScreen> {
             ),
           ],
           const SizedBox(height: TtSpace.x5),
-          if (saved.isNotEmpty) ...[
-            TtSectionHeader(
-              title: l10n.savedReports,
-              actionLabel: l10n.viewAll,
-              onAction: _openSaved,
-            ),
-            const SizedBox(height: TtSpace.x2),
-            TtCard(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Column(
-                children: [
-                  for (var i = 0; i < saved.length && i < 3; i++) ...[
-                    if (i > 0) Divider(height: 1, color: palette.border),
-                    ListTile(
-                      leading: Icon(
-                        Icons.bookmark_rounded,
-                        color: palette.primary,
-                      ),
-                      title: Text(
-                        saved[i].vehicleName,
-                        style: TtType.label(palette.textPrimary, size: 13),
-                      ),
-                      subtitle: Text(
-                        '${saved[i].plate} · ${saved[i].token}',
-                        style: TtType.caption(palette.textSecondary, size: 11),
-                      ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) =>
-                              BuyerResultScreen(token: saved[i].token),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            const SizedBox(height: TtSpace.x4),
-          ],
           if (_recent.isNotEmpty) ...[
             TtSectionHeader(title: l10n.recentSearches),
             const SizedBox(height: TtSpace.x2),

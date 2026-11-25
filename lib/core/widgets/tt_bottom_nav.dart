@@ -41,31 +41,15 @@ class TtBottomNav extends StatelessWidget {
         height: 58,
         child: Row(
           children: [
-            _NavItem(
-              label: labels[0],
-              icon: icons[0],
-              selected: index == 0,
-              onTap: () => onSelect(0),
-            ),
-            _NavItem(
-              label: labels[1],
-              icon: icons[1],
-              selected: index == 1,
-              onTap: () => onSelect(1),
-            ),
-            const SizedBox(width: 68),
-            _NavItem(
-              label: labels[2],
-              icon: icons[2],
-              selected: index == 2,
-              onTap: () => onSelect(2),
-            ),
-            _NavItem(
-              label: labels[3],
-              icon: icons[3],
-              selected: index == 3,
-              onTap: () => onSelect(3),
-            ),
+            for (var i = 0; i < labels.length; i++) ...[
+              if (i == labels.length ~/ 2) const SizedBox(width: 68),
+              _NavItem(
+                label: labels[i],
+                icon: icons[i],
+                selected: index == i,
+                onTap: () => onSelect(i),
+              ),
+            ],
           ],
         ),
       ),
