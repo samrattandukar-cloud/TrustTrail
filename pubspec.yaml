@@ -52,6 +52,7 @@ dependencies:
   uuid: ^4.6.0
   material_symbols_icons: ^4.2960.0
   csv: ^8.0.0
+  crypto: ^3.0.6
   flutter_localizations:
     sdk: flutter
   path_provider: ^2.1.6

@@ -9,6 +9,7 @@ import '../../core/utils/bs_date.dart';
 import '../../core/utils/formatters.dart';
 import '../../data/repositories/report_repository.dart';
 import '../../domain/completeness.dart';
+import '../../domain/integrity_chain.dart';
 
 /// Builds the shareable A4 dossier. The PDF intentionally uses Roman script:
 /// the pdf renderer does not shape Devanagari reliably, so the app carries a
@@ -25,6 +26,7 @@ abstract final class ReportPdfBuilder {
     final flags = (odometer['flags'] as List).cast<Map<String, Object?>>();
     final includeCosts = payload['includeCosts'] == true;
     final includeEvidence = payload['includeEvidence'] == true;
+    final integrity = verifyPayloadIntegrity(payload);
     final generatedAt =
         DateTime.tryParse(payload['generatedAt'] as String? ?? '') ??
         match.snapshot.createdAt;
@@ -505,6 +507,40 @@ abstract final class ReportPdfBuilder {
               ],
             ),
           ),
+          if (integrity != null) ...[
+            pw.SizedBox(height: 10),
+            pw.Container(
+              padding: const pw.EdgeInsets.all(8),
+              decoration: pw.BoxDecoration(
+                border: pw.Border.all(color: border, width: 0.7),
+                borderRadius: pw.BorderRadius.circular(8),
+              ),
+              child: pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  label('Integrity trail (SHA-256)'),
+                  pw.SizedBox(height: 3),
+                  pw.Text(
+                    integrity.intact
+                        ? 'Tamper-evident seal intact · ${integrity.entryCount} linked entries · ${integrity.shortFingerprint}'
+                        : 'Snapshot integrity mismatch — records may have been altered after export.',
+                    style: pw.TextStyle(
+                      fontSize: 8,
+                      fontWeight: pw.FontWeight.bold,
+                      color: integrity.intact
+                          ? navy
+                          : PdfColor.fromHex('#C93B3B'),
+                    ),
+                  ),
+                  pw.SizedBox(height: 2),
+                  pw.Text(
+                    'Verifies snapshot tampering only — not registry-verified.',
+                    style: pw.TextStyle(fontSize: 7.2, color: muted),
+                  ),
+                ],
+              ),
+            ),
+          ],
           pw.SizedBox(height: 12),
           pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,

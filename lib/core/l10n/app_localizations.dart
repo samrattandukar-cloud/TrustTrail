@@ -2328,6 +2328,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{filled} of {total} documented'**
   String documentedOf(int filled, int total);
+
+  /// No description provided for @integrityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Integrity trail'**
+  String get integrityTitle;
+
+  /// No description provided for @integrityIntact.
+  ///
+  /// In en, this message translates to:
+  /// **'Tamper-evident seal intact · {count} linked entries · SHA-256 {fingerprint}'**
+  String integrityIntact(int count, String fingerprint);
+
+  /// No description provided for @integrityMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Snapshot integrity mismatch — records may have been altered after export.'**
+  String get integrityMismatch;
+
+  /// No description provided for @integrityNote.
+  ///
+  /// In en, this message translates to:
+  /// **'SHA-256 hash chain over owner-recorded entries. Checks snapshot tampering only — not registry-verified.'**
+  String get integrityNote;
+
+  /// No description provided for @backupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup & restore'**
+  String get backupTitle;
+
+  /// No description provided for @backupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export or restore your offline garage file'**
+  String get backupSubtitle;
+
+  /// No description provided for @backupIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Before switching phones or resetting demo data, export your local database as JSON with a SHA-256 checksum. Keep a separate copy of evidence files.'**
+  String get backupIntro;
+
+  /// No description provided for @backupExportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Export backup file'**
+  String get backupExportAction;
+
+  /// No description provided for @backupImportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from backup file'**
+  String get backupImportAction;
+
+  /// No description provided for @backupExportShare.
+  ///
+  /// In en, this message translates to:
+  /// **'TrustTrail offline backup ({vehicles} vehicles, {records} records)'**
+  String backupExportShare(int vehicles, int records);
+
+  /// No description provided for @backupRestoreConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore backup?'**
+  String get backupRestoreConfirmTitle;
+
+  /// No description provided for @backupRestoreConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This replaces the current local database with the selected backup file.'**
+  String get backupRestoreConfirmBody;
+
+  /// No description provided for @backupRestoreDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored {vehicles} vehicles and {records} records.'**
+  String backupRestoreDone(int vehicles, int records);
+
+  /// No description provided for @backupInvalidFile.
+  ///
+  /// In en, this message translates to:
+  /// **'That file is not a valid TrustTrail backup or failed its SHA-256 integrity check.'**
+  String get backupInvalidFile;
+
+  /// No description provided for @backupSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicles} vehicles · {records} records · {reminders} reminders'**
+  String backupSummary(int vehicles, int records, int reminders);
+
+  /// No description provided for @eventsExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export event log (CSV)'**
+  String get eventsExport;
+
+  /// No description provided for @eventsExportShare.
+  ///
+  /// In en, this message translates to:
+  /// **'TrustTrail usability event log ({count} events)'**
+  String eventsExportShare(int count);
+
+  /// No description provided for @eventsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No evaluation events logged yet.'**
+  String get eventsEmpty;
+
+  /// No description provided for @eventsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} logged task events'**
+  String eventsCount(int count);
 }
 
 class _AppLocalizationsDelegate

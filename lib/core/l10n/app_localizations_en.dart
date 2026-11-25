@@ -1344,4 +1344,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String documentedOf(int filled, int total) {
     return '$filled of $total documented';
   }
+
+  @override
+  String get integrityTitle => 'Integrity trail';
+
+  @override
+  String integrityIntact(int count, String fingerprint) {
+    return 'Tamper-evident seal intact · $count linked entries · SHA-256 $fingerprint';
+  }
+
+  @override
+  String get integrityMismatch =>
+      'Snapshot integrity mismatch — records may have been altered after export.';
+
+  @override
+  String get integrityNote =>
+      'SHA-256 hash chain over owner-recorded entries. Checks snapshot tampering only — not registry-verified.';
+
+  @override
+  String get backupTitle => 'Backup & restore';
+
+  @override
+  String get backupSubtitle => 'Export or restore your offline garage file';
+
+  @override
+  String get backupIntro =>
+      'Before switching phones or resetting demo data, export your local database as JSON with a SHA-256 checksum. Keep a separate copy of evidence files.';
+
+  @override
+  String get backupExportAction => 'Export backup file';
+
+  @override
+  String get backupImportAction => 'Restore from backup file';
+
+  @override
+  String backupExportShare(int vehicles, int records) {
+    return 'TrustTrail offline backup ($vehicles vehicles, $records records)';
+  }
+
+  @override
+  String get backupRestoreConfirmTitle => 'Restore backup?';
+
+  @override
+  String get backupRestoreConfirmBody =>
+      'This replaces the current local database with the selected backup file.';
+
+  @override
+  String backupRestoreDone(int vehicles, int records) {
+    return 'Restored $vehicles vehicles and $records records.';
+  }
+
+  @override
+  String get backupInvalidFile =>
+      'That file is not a valid TrustTrail backup or failed its SHA-256 integrity check.';
+
+  @override
+  String backupSummary(int vehicles, int records, int reminders) {
+    return '$vehicles vehicles · $records records · $reminders reminders';
+  }
+
+  @override
+  String get eventsExport => 'Export event log (CSV)';
+
+  @override
+  String eventsExportShare(int count) {
+    return 'TrustTrail usability event log ($count events)';
+  }
+
+  @override
+  String get eventsEmpty => 'No evaluation events logged yet.';
+
+  @override
+  String eventsCount(int count) {
+    return '$count logged task events';
+  }
 }

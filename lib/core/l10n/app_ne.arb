@@ -354,7 +354,13 @@
   "noListingsTitle": "कुनै सूची उपलब्ध छैन",
   "noListingsBody": "नमुना सूची फर्काउन सेटिङमा डेमो डाटा रिसेट गर्नुहोस्।",
   "listedAgo": "{count, plural, =1{१ दिनअघि सूचीबद्ध} other{{count} दिनअघि सूचीबद्ध}}",
-  "@listedAgo": { "placeholders": { "count": { "type": "int" } } },
+  "@listedAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "demoListingBadge": "डेमो",
   "vehicleHistory": "वाहन इतिहास",
   "historyAtAGlance": "एक नजरमा इतिहास",
@@ -367,18 +373,116 @@
   "glanceNoIssues": "समस्या भेटिएन",
   "glanceNoGaps": "लामो खाडल छैन",
   "glanceFlags": "{count, plural, =1{१ रिडिङ चेतावनी} other{{count} रिडिङ चेतावनी}}",
-  "@glanceFlags": { "placeholders": { "count": { "type": "int" } } },
+  "@glanceFlags": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "glanceGapsCount": "{count, plural, =1{१२० दिनभन्दा लामो १ खाडल} other{१२० दिनभन्दा लामो {count} खाडल}}",
-  "@glanceGapsCount": { "placeholders": { "count": { "type": "int" } } },
+  "@glanceGapsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "glanceOwnershipSub": "मालिकको अभिलेखअनुसार",
   "glanceComputedNote": "गणना यही स्थिर स्न्यापसटबाट गरिएको हो। नदेखिएको प्रविष्टि भन्नाले अभिलेख साझा नगरिएको हो।",
   "reportHeroListedBy": "{name} द्वारा सूचीबद्ध",
-  "@reportHeroListedBy": { "placeholders": { "name": { "type": "String" } } },
+  "@reportHeroListedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "documentedOf": "{filled}/{total} दस्तावेजीकृत",
   "@documentedOf": {
     "placeholders": {
-      "filled": { "type": "int" },
-      "total": { "type": "int" }
+      "filled": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "integrityTitle": "अखण्डता शृङ्खला",
+  "integrityIntact": "छेड़छाड-रोधी सिल सुरक्षित · {count} जोडिएका प्रविष्टि · SHA-256 {fingerprint}",
+  "@integrityIntact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "integrityMismatch": "स्न्यापसट अखण्डता मिलेन — निर्यातपछि रेकर्ड परिवर्तन भएको हुन सक्छ।",
+  "integrityNote": "मालिकले अभिलेख गरेका प्रविष्टिहरूमा SHA-256 ह्यास शृङ्खला। स्न्यापसट छेड़छाड मात्र जाँच गर्छ — दर्ता प्रमाणीकरण होइन।",
+  "backupTitle": "ब्याकअप र पुनर्स्थापना",
+  "backupSubtitle": "अफलाइन ग्यारेज फाइल निर्यात वा पुनर्स्थापना गर्नुहोस्",
+  "backupIntro": "फोन बदल्नु वा डेमो डाटा रिसेट गर्नुअघि आफ्नो स्थानीय डाटाबेस SHA-256 चेकसमसहित JSON फाइलमा निर्यात गर्नुहोस्। प्रमाणका फाइलहरूको छुट्टै प्रतिलिपि राख्नुहोस्।",
+  "backupExportAction": "ब्याकअप फाइल निर्यात गर्नुहोस्",
+  "backupImportAction": "ब्याकअप फाइलबाट पुनर्स्थापना गर्नुहोस्",
+  "backupExportShare": "TrustTrail अफलाइन ब्याकअप ({vehicles} वाहन, {records} रेकर्ड)",
+  "@backupExportShare": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      }
+    }
+  },
+  "backupRestoreConfirmTitle": "ब्याकअप पुनर्स्थापना गर्ने?",
+  "backupRestoreConfirmBody": "यसले हालको स्थानीय डाटाबेसलाई छानिएको ब्याकअप फाइलले प्रतिस्थापन गर्छ।",
+  "backupRestoreDone": "{vehicles} वाहन र {records} रेकर्ड पुनर्स्थापना भयो।",
+  "@backupRestoreDone": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      }
+    }
+  },
+  "backupInvalidFile": "यो मान्य TrustTrail ब्याकअप होइन वा SHA-256 अखण्डता जाँच असफल भयो।",
+  "backupSummary": "{vehicles} वाहन · {records} रेकर्ड · {reminders} सम्झना",
+  "@backupSummary": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      },
+      "reminders": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsExport": "कार्यक्रम लग निर्यात (CSV)",
+  "eventsExportShare": "TrustTrail उपयोगिता कार्यक्रम लग ({count} घटना)",
+  "@eventsExportShare": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsEmpty": "अहिलेसम्म कुनै मूल्याङ्कन घटना दर्ता छैन।",
+  "eventsCount": "{count} दर्ता कार्य घटना",
+  "@eventsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
     }
   }
 }

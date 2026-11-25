@@ -22,6 +22,10 @@ class EventRepository {
     return _db.query('app_events', orderBy: 'at DESC', limit: limit);
   }
 
+  Future<List<Map<String, Object?>>> listAll() async {
+    return _db.query('app_events', orderBy: 'at ASC');
+  }
+
   Future<int> count() async {
     final value = Sqflite.firstIntValue(
       await _db.rawQuery('SELECT COUNT(*) FROM app_events'),

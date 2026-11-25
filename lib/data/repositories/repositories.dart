@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../local/app_database.dart';
 import 'auth_repository.dart';
+import 'backup_repository.dart';
 import 'event_repository.dart';
 import 'evidence_repository.dart';
 import 'feedback_repository.dart';
@@ -40,4 +41,8 @@ final feedbackRepositoryProvider = Provider<FeedbackRepository>(
 
 final eventRepositoryProvider = Provider<EventRepository>(
   (ref) => EventRepository(ref.watch(databaseProvider).db),
+);
+
+final backupRepositoryProvider = Provider<BackupRepository>(
+  (ref) => BackupRepository(ref.watch(databaseProvider).db),
 );

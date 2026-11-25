@@ -1,3 +1,4 @@
+import '../../domain/integrity_chain.dart';
 import '../models/evidence.dart';
 import '../models/vehicle.dart';
 import '../models/vehicle_record.dart';
@@ -17,6 +18,19 @@ Map<String, Object?> buildReportPayload({
   final sorted = newestFirst(records);
   final completeness = completenessFor(vehicle, records, evidence);
   final odometer = odometerFor(records);
+  final serializedRecords = <Map<String, Object?>>[
+    for (final record in sorted)
+      {
+        ...record.toMap(),
+        'evidence': includeEvidence
+            ? [
+                for (final item in evidence)
+                  if (item.recordId == record.id) item.toMap(),
+              ]
+            : <Map<String, Object?>>[],
+      },
+  ];
+  final integrity = buildIntegrityChain(serializedRecords);
 
   return {
     'token': token,
@@ -25,18 +39,8 @@ Map<String, Object?> buildReportPayload({
       ...vehicle.toMap(),
       'latestKm': latestOdometer(vehicle, records),
     },
-    'records': [
-      for (final record in sorted)
-        {
-          ...record.toMap(),
-          'evidence': includeEvidence
-              ? [
-                  for (final item in evidence)
-                    if (item.recordId == record.id) item.toMap(),
-                ]
-              : <Map<String, Object?>>[],
-        },
-    ],
+    'records': serializedRecords,
+    'integrity': integrity.toMap(),
     'completeness': {
       'filled': completeness.filled,
       'total': completeness.total,

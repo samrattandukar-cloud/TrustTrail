@@ -10,6 +10,7 @@ import '../../core/widgets/tt_card.dart';
 import '../../core/widgets/tt_headers.dart';
 import '../../core/widgets/tt_pills.dart';
 import 'about_screen.dart';
+import 'backup_screen.dart';
 import 'demo_data_screen.dart';
 import 'sus_screen.dart';
 
@@ -98,6 +99,12 @@ class SettingsScreen extends ConsumerWidget {
                     title: l10n.feedback,
                     subtitle: l10n.feedbackBody,
                     onTap: () => _push(context, const SusScreen()),
+                  ),
+                  _LinkTile(
+                    icon: Icons.backup_outlined,
+                    title: l10n.backupTitle,
+                    subtitle: l10n.backupSubtitle,
+                    onTap: () => _push(context, const BackupScreen()),
                   ),
                   _LinkTile(
                     icon: Icons.storage_outlined,

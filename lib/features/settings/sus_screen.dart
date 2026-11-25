@@ -17,6 +17,7 @@ import '../../core/widgets/tt_status_banner.dart';
 import '../../core/widgets/tt_text_field.dart';
 import '../../data/models/sus_response.dart';
 import '../../data/repositories/repositories.dart';
+import '../../domain/events_csv.dart';
 import '../../domain/sus_csv.dart';
 import '../../domain/sus_scoring.dart';
 import '../auth/session.dart';
@@ -25,6 +26,10 @@ final feedbackListProvider = FutureProvider.autoDispose<List<SusResponse>>((
   ref,
 ) async {
   return ref.watch(feedbackRepositoryProvider).list();
+});
+
+final eventCountProvider = FutureProvider.autoDispose<int>((ref) async {
+  return ref.watch(eventRepositoryProvider).count();
 });
 
 class SusScreen extends ConsumerStatefulWidget {
@@ -139,12 +144,45 @@ class _SusScreenState extends ConsumerState<SusScreen> {
     );
   }
 
+  Future<void> _exportEvents() async {
+    final l10n = context.l10n;
+    final rows = await ref.read(eventRepositoryProvider).listAll();
+    if (rows.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.eventsEmpty)));
+      return;
+    }
+    final csvText = eventsCsv([
+      for (final row in rows)
+        EventCsvEntry(
+          id: '${row['id'] ?? ''}',
+          type: '${row['type'] ?? ''}',
+          at: '${row['at'] ?? ''}',
+          metaJson: row['meta_json'] as String?,
+        ),
+    ]);
+    final directory = await getTemporaryDirectory();
+    final file = File(
+      '${directory.path}/trusttrail_events_'
+      '${DateTime.now().millisecondsSinceEpoch}.csv',
+    );
+    await file.writeAsString(csvText);
+    await SharePlus.instance.share(
+      ShareParams(
+        text: l10n.eventsExportShare(rows.length),
+        files: [XFile(file.path)],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final palette = context.palette;
     final statements = _statements(l10n);
     final feedback = ref.watch(feedbackListProvider).value ?? const [];
+    final eventCount = ref.watch(eventCountProvider).value ?? 0;
     final average = feedback.isEmpty
         ? null
         : feedback.map((item) => item.susScore).reduce((a, b) => a + b) /
@@ -241,6 +279,17 @@ class _SusScreenState extends ConsumerState<SusScreen> {
                   const SizedBox(height: 6),
                   Text(
                     l10n.susCsvNote,
+                    style: TtType.caption(palette.textSecondary, size: 10.5),
+                  ),
+                  const SizedBox(height: 10),
+                  TtSecondaryButton(
+                    label: l10n.eventsExport,
+                    icon: Icons.analytics_outlined,
+                    onPressed: _exportEvents,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    l10n.eventsCount(eventCount),
                     style: TtType.caption(palette.textSecondary, size: 10.5),
                   ),
                 ],

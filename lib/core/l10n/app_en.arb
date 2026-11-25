@@ -18,7 +18,13 @@
   "commonSearch": "Search",
   "commonLoading": "Loading…",
   "evidenceAttached": "Evidence attached ({count})",
-  "@evidenceAttached": { "placeholders": { "count": { "type": "int" } } },
+  "@evidenceAttached": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "selfReported": "Self-reported",
   "ownerRecorded": "Owner-recorded",
   "overdue": "Overdue",
@@ -41,7 +47,13 @@
   "loginNoAccount": "No account found for that number. Create your account below.",
   "welcomeBack": "Welcome back",
   "namasteUser": "Namaste, {name}",
-  "@namasteUser": { "placeholders": { "name": { "type": "String" } } },
+  "@namasteUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "yourGarage": "Your garage",
   "garageSubtitle": "Every entry here is owner-recorded.",
   "recentActivity": "Recent activity",
@@ -51,16 +63,28 @@
   "shareReport": "Share report",
   "generateReport": "Generate report",
   "incompleteSections": "{count} of 10 sections need attention",
-  "@incompleteSections": { "placeholders": { "count": { "type": "int" } } },
+  "@incompleteSections": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "missingSections": "Missing evidence",
   "odometer": "Odometer",
   "odometerTrend": "Odometer trend",
   "gapNote": "No records between {from} and {to} ({months} months).",
   "@gapNote": {
     "placeholders": {
-      "from": { "type": "String" },
-      "to": { "type": "String" },
-      "months": { "type": "int" }
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "months": {
+        "type": "int"
+      }
     }
   },
   "noRecordsTitle": "No records yet",
@@ -93,7 +117,13 @@
   "sendOtp": "Continue with phone",
   "otpTitle": "Enter the demo code",
   "otpSentTo": "We sent a simulated code to {phone}. Any 6 digits work in this demo.",
-  "@otpSentTo": { "placeholders": { "phone": { "type": "String" } } },
+  "@otpSentTo": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
   "demoOtpHint": "Demo OTP: 123456",
   "verify": "Verify",
   "resendCode": "Resend code",
@@ -111,8 +141,12 @@
   "odometerTrendSemantics": "Odometer trend, {minKm} to {maxKm}",
   "@odometerTrendSemantics": {
     "placeholders": {
-      "minKm": { "type": "String" },
-      "maxKm": { "type": "String" }
+      "minKm": {
+        "type": "String"
+      },
+      "maxKm": {
+        "type": "String"
+      }
     }
   },
   "searchButton": "Look up report",
@@ -153,7 +187,13 @@
   "sourceSelfReported": "Self-reported",
   "evidenceNone": "No evidence attached",
   "evidenceAttachedShort": "{count} attached",
-  "@evidenceAttachedShort": { "placeholders": { "count": { "type": "int" } } },
+  "@evidenceAttachedShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "remindersTitle": "Reminders",
   "overdueGroup": "Overdue",
   "thisMonth": "This month",
@@ -166,80 +206,160 @@
   "reminderSummary": "{reminders, plural, =0{No active reminders} =1{1 active reminder} other{{reminders} active reminders}} · {vehicles, plural, =0{no vehicles} =1{1 vehicle} other{{vehicles} vehicles}}",
   "@reminderSummary": {
     "placeholders": {
-      "reminders": { "type": "int" },
-      "vehicles": { "type": "int" }
+      "reminders": {
+        "type": "int"
+      },
+      "vehicles": {
+        "type": "int"
+      }
     }
   },
   "overdueReminderBanner": "{count, plural, =1{1 reminder} other{{count} reminders}} · {status}",
   "@overdueReminderBanner": {
     "placeholders": {
-      "count": { "type": "int" },
-      "status": { "type": "String" }
+      "count": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      }
     }
   },
   "recordEvidenceSummary": "{records, plural, =1{1 record} other{{records} records}} · {evidence, plural, =0{no evidence} =1{1 evidence file} other{{evidence} evidence files}}",
   "@recordEvidenceSummary": {
     "placeholders": {
-      "records": { "type": "int" },
-      "evidence": { "type": "int" }
+      "records": {
+        "type": "int"
+      },
+      "evidence": {
+        "type": "int"
+      }
     }
   },
   "recordsCount": "{count, plural, =0{No records} =1{1 record} other{{count} records}}",
-  "@recordsCount": { "placeholders": { "count": { "type": "int" } } },
+  "@recordsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "readingsCount": "{count, plural, =0{No readings} =1{1 reading} other{{count} readings}}",
-  "@readingsCount": { "placeholders": { "count": { "type": "int" } } },
+  "@readingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "acrossReadings": "across {count, plural, =1{1 reading} other{{count} readings}}",
-  "@acrossReadings": { "placeholders": { "count": { "type": "int" } } },
+  "@acrossReadings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "odometerAverageSummary": "{km} km/month average across {count, plural, =1{1 reading} other{{count} readings}}.",
   "@odometerAverageSummary": {
     "placeholders": {
-      "km": { "type": "String" },
-      "count": { "type": "int" }
+      "km": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
     }
   },
   "odometerAverage": "{km} km/month average",
-  "@odometerAverage": { "placeholders": { "km": { "type": "String" } } },
+  "@odometerAverage": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
   "responsesCount": "{count, plural, =0{No responses yet} =1{1 response} other{{count} responses}}",
-  "@responsesCount": { "placeholders": { "count": { "type": "int" } } },
+  "@responsesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "savedOn": "Saved {date}",
-  "@savedOn": { "placeholders": { "date": { "type": "String" } } },
+  "@savedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "gapNoteSentence": "No records between {from} and {to} ({months} months).",
   "@gapNoteSentence": {
     "placeholders": {
-      "from": { "type": "String" },
-      "to": { "type": "String" },
-      "months": { "type": "String" }
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "months": {
+        "type": "String"
+      }
     }
   },
   "odometerDecreaseSentence": "Odometer decreased from {fromKm} km to {toKm} km between {from} and {to}.",
   "@odometerDecreaseSentence": {
     "placeholders": {
-      "fromKm": { "type": "String" },
-      "toKm": { "type": "String" },
-      "from": { "type": "String" },
-      "to": { "type": "String" }
+      "fromKm": {
+        "type": "String"
+      },
+      "toKm": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
     }
   },
   "highUsageSentence": "Implied usage looks high between {from} and {to}. Check the readings.",
   "@highUsageSentence": {
     "placeholders": {
-      "from": { "type": "String" },
-      "to": { "type": "String" }
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
     }
   },
   "flagDecreaseNote": "Odometer decreased from {fromKm} km to {toKm} km. Recorded as-is — check the documents.",
   "@flagDecreaseNote": {
     "placeholders": {
-      "fromKm": { "type": "String" },
-      "toKm": { "type": "String" }
+      "fromKm": {
+        "type": "String"
+      },
+      "toKm": {
+        "type": "String"
+      }
     }
   },
   "flagHighUsageNote": "Implied usage of {rate} km/month between {from} and {to}. Check the readings.",
   "@flagHighUsageNote": {
     "placeholders": {
-      "rate": { "type": "String" },
-      "from": { "type": "String" },
-      "to": { "type": "String" }
+      "rate": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
     }
   },
   "settingsTitle": "Settings",
@@ -277,7 +397,13 @@
   "susCsvNote": "CSV includes participant code, role, score and comments. Stored only on this device.",
   "susFormulaNote": "SUS: odd items score (x − 1), even items score (5 − x); sum × 2.5.",
   "susExportShare": "TrustTrail SUS responses ({count})",
-  "@susExportShare": { "placeholders": { "count": { "type": "int" } } },
+  "@susExportShare": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "evidenceTitle": "Evidence",
   "attachEvidence": "Attach evidence",
   "evidenceFromCamera": "Take a photo",
@@ -329,8 +455,12 @@
   "stepOf": "Step {current} of {total}",
   "@stepOf": {
     "placeholders": {
-      "current": { "type": "int" },
-      "total": { "type": "int" }
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "sus1": "I think that I would like to use TrustTrail frequently.",
@@ -355,7 +485,13 @@
   "aboutDataBody": "The owner, vehicles, receipts and shared reports are fictitious sample data. The SMS code is simulated: any six digits work.",
   "storageUsage": "Evidence storage",
   "storageFiles": "{count, plural, =0{No files} =1{1 file} other{{count} files}}",
-  "@storageFiles": { "placeholders": { "count": { "type": "int" } } },
+  "@storageFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "demoDataNote": "Demo vehicles, receipts and shared reports are regenerated deterministically. Photos live in the app bundle.",
   "modeOwner": "Owner mode",
   "modeBuyer": "Buyer mode",
@@ -374,21 +510,51 @@
   "demoTokensBody": "Every fresh install ships with three frozen reports. Search a plate or use one of these tokens:",
   "tryDemoToken": "Try a demo token:",
   "generatedOn": "Generated {date}",
-  "@generatedOn": { "placeholders": { "date": { "type": "String" } } },
+  "@generatedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "reminderOverdueBy": "{count, plural, =1{Overdue by 1 day} other{Overdue by {count} days}}",
-  "@reminderOverdueBy": { "placeholders": { "count": { "type": "int" } } },
+  "@reminderOverdueBy": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "reminderDueToday": "Due today",
   "reminderDueIn": "{count, plural, =1{Due in 1 day} other{Due in {count} days}}",
-  "@reminderDueIn": { "placeholders": { "count": { "type": "int" } } },
+  "@reminderDueIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "reminderKmToTarget": "{km} km to target",
-  "@reminderKmToTarget": { "placeholders": { "km": { "type": "String" } } },
+  "@reminderKmToTarget": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
   "reminderServiceDue": "Service due",
   "reminderNewTitle": "Insurance renewal",
   "allSectionsPresent": "All ten documented sections are present.",
   "recordedTimeline": "Recorded timeline",
   "noSharedRecords": "No records were shared with this report.",
   "missingListLabel": "Missing: {list}.",
-  "@missingListLabel": { "placeholders": { "list": { "type": "String" } } },
+  "@missingListLabel": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
   "genStepSnapshot": "Freezing the vehicle snapshot",
   "genStepSections": "Counting completeness sections",
   "genStepToken": "Building the dossier token",
@@ -426,7 +592,9 @@
   "@documentedPercent": {
     "description": "Percentage of completion-meter sections that have data",
     "placeholders": {
-      "percent": {"type": "int"}
+      "percent": {
+        "type": "int"
+      }
     }
   },
   "snapshotFreezeNote": "The snapshot freezes today's data. Later edits do not change this report.",
@@ -455,7 +623,13 @@
   "noListingsTitle": "No listings available",
   "noListingsBody": "Reset the demo data in Settings to restore the sample listings.",
   "listedAgo": "{count, plural, =1{Listed 1 day ago} other{Listed {count} days ago}}",
-  "@listedAgo": { "placeholders": { "count": { "type": "int" } } },
+  "@listedAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "demoListingBadge": "Demo",
   "vehicleHistory": "Vehicle history",
   "historyAtAGlance": "History at a glance",
@@ -468,18 +642,116 @@
   "glanceNoIssues": "No issues found",
   "glanceNoGaps": "No long gaps",
   "glanceFlags": "{count, plural, =1{1 reading flagged} other{{count} readings flagged}}",
-  "@glanceFlags": { "placeholders": { "count": { "type": "int" } } },
+  "@glanceFlags": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "glanceGapsCount": "{count, plural, =1{1 gap over 120 days} other{{count} gaps over 120 days}}",
-  "@glanceGapsCount": { "placeholders": { "count": { "type": "int" } } },
+  "@glanceGapsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "glanceOwnershipSub": "As recorded by the owner",
   "glanceComputedNote": "Counts come from this frozen snapshot. A missing entry means no record was shared.",
   "reportHeroListedBy": "Listed by {name}",
-  "@reportHeroListedBy": { "placeholders": { "name": { "type": "String" } } },
+  "@reportHeroListedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "documentedOf": "{filled} of {total} documented",
   "@documentedOf": {
     "placeholders": {
-      "filled": { "type": "int" },
-      "total": { "type": "int" }
+      "filled": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "integrityTitle": "Integrity trail",
+  "integrityIntact": "Tamper-evident seal intact · {count} linked entries · SHA-256 {fingerprint}",
+  "@integrityIntact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
+  "integrityMismatch": "Snapshot integrity mismatch — records may have been altered after export.",
+  "integrityNote": "SHA-256 hash chain over owner-recorded entries. Checks snapshot tampering only — not registry-verified.",
+  "backupTitle": "Backup & restore",
+  "backupSubtitle": "Export or restore your offline garage file",
+  "backupIntro": "Before switching phones or resetting demo data, export your local database as JSON with a SHA-256 checksum. Keep a separate copy of evidence files.",
+  "backupExportAction": "Export backup file",
+  "backupImportAction": "Restore from backup file",
+  "backupExportShare": "TrustTrail offline backup ({vehicles} vehicles, {records} records)",
+  "@backupExportShare": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      }
+    }
+  },
+  "backupRestoreConfirmTitle": "Restore backup?",
+  "backupRestoreConfirmBody": "This replaces the current local database with the selected backup file.",
+  "backupRestoreDone": "Restored {vehicles} vehicles and {records} records.",
+  "@backupRestoreDone": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      }
+    }
+  },
+  "backupInvalidFile": "That file is not a valid TrustTrail backup or failed its SHA-256 integrity check.",
+  "backupSummary": "{vehicles} vehicles · {records} records · {reminders} reminders",
+  "@backupSummary": {
+    "placeholders": {
+      "vehicles": {
+        "type": "int"
+      },
+      "records": {
+        "type": "int"
+      },
+      "reminders": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsExport": "Export event log (CSV)",
+  "eventsExportShare": "TrustTrail usability event log ({count} events)",
+  "@eventsExportShare": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsEmpty": "No evaluation events logged yet.",
+  "eventsCount": "{count} logged task events",
+  "@eventsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
     }
   }
 }

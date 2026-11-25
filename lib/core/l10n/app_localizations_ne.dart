@@ -1340,4 +1340,79 @@ class AppLocalizationsNe extends AppLocalizations {
   String documentedOf(int filled, int total) {
     return '$filled/$total दस्तावेजीकृत';
   }
+
+  @override
+  String get integrityTitle => 'अखण्डता शृङ्खला';
+
+  @override
+  String integrityIntact(int count, String fingerprint) {
+    return 'छेड़छाड-रोधी सिल सुरक्षित · $count जोडिएका प्रविष्टि · SHA-256 $fingerprint';
+  }
+
+  @override
+  String get integrityMismatch =>
+      'स्न्यापसट अखण्डता मिलेन — निर्यातपछि रेकर्ड परिवर्तन भएको हुन सक्छ।';
+
+  @override
+  String get integrityNote =>
+      'मालिकले अभिलेख गरेका प्रविष्टिहरूमा SHA-256 ह्यास शृङ्खला। स्न्यापसट छेड़छाड मात्र जाँच गर्छ — दर्ता प्रमाणीकरण होइन।';
+
+  @override
+  String get backupTitle => 'ब्याकअप र पुनर्स्थापना';
+
+  @override
+  String get backupSubtitle =>
+      'अफलाइन ग्यारेज फाइल निर्यात वा पुनर्स्थापना गर्नुहोस्';
+
+  @override
+  String get backupIntro =>
+      'फोन बदल्नु वा डेमो डाटा रिसेट गर्नुअघि आफ्नो स्थानीय डाटाबेस SHA-256 चेकसमसहित JSON फाइलमा निर्यात गर्नुहोस्। प्रमाणका फाइलहरूको छुट्टै प्रतिलिपि राख्नुहोस्।';
+
+  @override
+  String get backupExportAction => 'ब्याकअप फाइल निर्यात गर्नुहोस्';
+
+  @override
+  String get backupImportAction => 'ब्याकअप फाइलबाट पुनर्स्थापना गर्नुहोस्';
+
+  @override
+  String backupExportShare(int vehicles, int records) {
+    return 'TrustTrail अफलाइन ब्याकअप ($vehicles वाहन, $records रेकर्ड)';
+  }
+
+  @override
+  String get backupRestoreConfirmTitle => 'ब्याकअप पुनर्स्थापना गर्ने?';
+
+  @override
+  String get backupRestoreConfirmBody =>
+      'यसले हालको स्थानीय डाटाबेसलाई छानिएको ब्याकअप फाइलले प्रतिस्थापन गर्छ।';
+
+  @override
+  String backupRestoreDone(int vehicles, int records) {
+    return '$vehicles वाहन र $records रेकर्ड पुनर्स्थापना भयो।';
+  }
+
+  @override
+  String get backupInvalidFile =>
+      'यो मान्य TrustTrail ब्याकअप होइन वा SHA-256 अखण्डता जाँच असफल भयो।';
+
+  @override
+  String backupSummary(int vehicles, int records, int reminders) {
+    return '$vehicles वाहन · $records रेकर्ड · $reminders सम्झना';
+  }
+
+  @override
+  String get eventsExport => 'कार्यक्रम लग निर्यात (CSV)';
+
+  @override
+  String eventsExportShare(int count) {
+    return 'TrustTrail उपयोगिता कार्यक्रम लग ($count घटना)';
+  }
+
+  @override
+  String get eventsEmpty => 'अहिलेसम्म कुनै मूल्याङ्कन घटना दर्ता छैन।';
+
+  @override
+  String eventsCount(int count) {
+    return '$count दर्ता कार्य घटना';
+  }
 }

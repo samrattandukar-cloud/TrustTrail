@@ -12,6 +12,7 @@ import '../../core/widgets/tt_odometer_chart.dart';
 import '../../core/widgets/tt_pills.dart';
 import '../../core/widgets/tt_status_banner.dart';
 import '../../data/repositories/report_repository.dart';
+import '../../domain/integrity_chain.dart';
 import '../../domain/odometer_analysis.dart';
 import '../records/category_style.dart';
 import '../vehicles/section_labels.dart';
@@ -80,6 +81,7 @@ class ReportDossier extends StatelessWidget {
     ];
     final gaps = (odometer['gaps'] as List).cast<Map<String, Object?>>();
     final photo = vehicle['photo_asset'] as String?;
+    final integrity = verifyPayloadIntegrity(payload);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,6 +268,40 @@ class ReportDossier extends StatelessWidget {
             const SizedBox(height: 8),
           ],
         const SizedBox(height: TtSpace.x2),
+        if (integrity != null) ...[
+          TtCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.integrityTitle,
+                  style: TtType.section(palette.textPrimary),
+                ),
+                const SizedBox(height: 8),
+                TtStatusBanner(
+                  message: integrity.intact
+                      ? l10n.integrityIntact(
+                          integrity.entryCount,
+                          integrity.shortFingerprint,
+                        )
+                      : l10n.integrityMismatch,
+                  tone: integrity.intact
+                      ? TtBannerTone.success
+                      : TtBannerTone.error,
+                  icon: integrity.intact
+                      ? Icons.verified_outlined
+                      : Icons.gpp_bad_outlined,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.integrityNote,
+                  style: TtType.caption(palette.textSecondary, size: 11),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: TtSpace.x3),
+        ],
         TtStatusBanner(
           message: l10n.dossierDisclaimer,
           tone: TtBannerTone.info,
