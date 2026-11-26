@@ -272,6 +272,30 @@ abstract class AppLocalizations {
   /// **'Add vehicle'**
   String get addVehicle;
 
+  /// No description provided for @addPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get addPhoto;
+
+  /// No description provided for @changePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get changePhoto;
+
+  /// No description provided for @removePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get removePhoto;
+
+  /// No description provided for @vehiclePhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional — shown on your reports.'**
+  String get vehiclePhotoHint;
+
   /// No description provided for @navGarage.
   ///
   /// In en, this message translates to:

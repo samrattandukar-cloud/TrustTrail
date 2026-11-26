@@ -100,6 +100,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addVehicle => 'Add vehicle';
 
   @override
+  String get addPhoto => 'Add a photo';
+
+  @override
+  String get changePhoto => 'Change photo';
+
+  @override
+  String get removePhoto => 'Remove photo';
+
+  @override
+  String get vehiclePhotoHint => 'Optional — shown on your reports.';
+
+  @override
   String get navGarage => 'Garage';
 
   @override

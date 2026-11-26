@@ -63,88 +63,92 @@ class RemindersScreen extends ConsumerWidget {
         .where((item) => item.assessment.status == ReminderStatus.upcoming)
         .toList();
 
-    return SafeArea(
-      bottom: false,
-      child: RefreshIndicator(
-        onRefresh: () => ref.read(garageProvider.notifier).refresh(),
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(
-            TtSpace.page,
-            12,
-            TtSpace.page,
-            TtSpace.bottomClearance,
-          ),
-          children: [
-            TtAppHeader(
-              eyebrow: l10n.remindersTitle,
-              title: l10n.remindersTitle,
-              subtitle: l10n.remindersIntro,
-              actions: [
-                TtCircleIconButton(
-                  icon: Icons.add_rounded,
-                  tooltip: l10n.remindersTitle,
-                  onPressed: () => _addReminder(context, ref, entries),
-                ),
-              ],
+    return Scaffold(
+      backgroundColor: palette.canvas,
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          onRefresh: () => ref.read(garageProvider.notifier).refresh(),
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(
+              TtSpace.page,
+              12,
+              TtSpace.page,
+              TtSpace.bottomClearance,
             ),
-            const SizedBox(height: TtSpace.x4),
-            if (garage.isLoading && items.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
-                child: Center(child: CircularProgressIndicator()),
-              )
-            else if (items.isEmpty)
-              TtCard(
-                child: TtEmptyState(
-                  icon: Icons.notifications_none_rounded,
-                  title: l10n.noReminders,
-                  body: l10n.noRemindersBody,
-                  compact: true,
-                  action: entries.isEmpty
-                      ? null
-                      : TtPrimaryButton(
-                          label: l10n.addReminder,
-                          icon: Icons.add_rounded,
-                          onPressed: () => _addReminder(context, ref, entries),
-                          expand: false,
-                        ),
-                ),
-              )
-            else ...[
-              if (overdue.isNotEmpty) ...[
-                TtSectionHeader(title: l10n.overdueGroup),
-                const SizedBox(height: 6),
-                for (final item in overdue) ...[
-                  _ReminderCard(item: item),
-                  const SizedBox(height: 8),
+            children: [
+              TtAppHeader(
+                eyebrow: l10n.remindersTitle,
+                title: l10n.remindersTitle,
+                subtitle: l10n.remindersIntro,
+                actions: [
+                  TtCircleIconButton(
+                    icon: Icons.add_rounded,
+                    tooltip: l10n.remindersTitle,
+                    onPressed: () => _addReminder(context, ref, entries),
+                  ),
                 ],
-                const SizedBox(height: TtSpace.x3),
-              ],
-              if (soon.isNotEmpty) ...[
-                TtSectionHeader(title: l10n.thisMonth),
-                const SizedBox(height: 6),
-                for (final item in soon) ...[
-                  _ReminderCard(item: item),
-                  const SizedBox(height: 8),
+              ),
+              const SizedBox(height: TtSpace.x4),
+              if (garage.isLoading && items.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 60),
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else if (items.isEmpty)
+                TtCard(
+                  child: TtEmptyState(
+                    icon: Icons.notifications_none_rounded,
+                    title: l10n.noReminders,
+                    body: l10n.noRemindersBody,
+                    compact: true,
+                    action: entries.isEmpty
+                        ? null
+                        : TtPrimaryButton(
+                            label: l10n.addReminder,
+                            icon: Icons.add_rounded,
+                            onPressed: () =>
+                                _addReminder(context, ref, entries),
+                            expand: false,
+                          ),
+                  ),
+                )
+              else ...[
+                if (overdue.isNotEmpty) ...[
+                  TtSectionHeader(title: l10n.overdueGroup),
+                  const SizedBox(height: 6),
+                  for (final item in overdue) ...[
+                    _ReminderCard(item: item),
+                    const SizedBox(height: 8),
+                  ],
+                  const SizedBox(height: TtSpace.x3),
                 ],
-                const SizedBox(height: TtSpace.x3),
-              ],
-              if (later.isNotEmpty) ...[
-                TtSectionHeader(title: l10n.laterGroup),
-                const SizedBox(height: 6),
-                for (final item in later) ...[
-                  _ReminderCard(item: item),
-                  const SizedBox(height: 8),
+                if (soon.isNotEmpty) ...[
+                  TtSectionHeader(title: l10n.thisMonth),
+                  const SizedBox(height: 6),
+                  for (final item in soon) ...[
+                    _ReminderCard(item: item),
+                    const SizedBox(height: 8),
+                  ],
+                  const SizedBox(height: TtSpace.x3),
+                ],
+                if (later.isNotEmpty) ...[
+                  TtSectionHeader(title: l10n.laterGroup),
+                  const SizedBox(height: 6),
+                  for (final item in later) ...[
+                    _ReminderCard(item: item),
+                    const SizedBox(height: 8),
+                  ],
                 ],
               ],
+              const SizedBox(height: TtSpace.x4),
+              Text(
+                l10n.reminderSummary(items.length, entries.length),
+                textAlign: TextAlign.center,
+                style: TtType.caption(palette.textSecondary),
+              ),
             ],
-            const SizedBox(height: TtSpace.x4),
-            Text(
-              l10n.reminderSummary(items.length, entries.length),
-              textAlign: TextAlign.center,
-              style: TtType.caption(palette.textSecondary),
-            ),
-          ],
+          ),
         ),
       ),
     );

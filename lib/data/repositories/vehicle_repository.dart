@@ -35,6 +35,15 @@ class VehicleRepository {
     );
   }
 
+  Future<void> setPhoto(String id, String? path) async {
+    await _db.update(
+      'vehicles',
+      {'photo_asset': path},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   Future<void> delete(String id) async {
     await _db.delete('vehicles', where: 'id = ?', whereArgs: [id]);
   }

@@ -100,6 +100,18 @@ class AppLocalizationsNe extends AppLocalizations {
   String get addVehicle => 'वाहन थप्नुहोस्';
 
   @override
+  String get addPhoto => 'फोटो थप्नुहोस्';
+
+  @override
+  String get changePhoto => 'फोटो परिवर्तन गर्नुहोस्';
+
+  @override
+  String get removePhoto => 'फोटो हटाउनुहोस्';
+
+  @override
+  String get vehiclePhotoHint => 'वैकल्पिक — तपाईंका रिपोर्टमा देखिन्छ।';
+
+  @override
   String get navGarage => 'ग्यारेज';
 
   @override

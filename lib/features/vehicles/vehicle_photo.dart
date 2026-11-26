@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -11,6 +13,8 @@ class VehiclePhoto extends StatelessWidget {
     this.radius = 0,
   });
 
+  /// Either a bundled asset path (`assets/...`), an already prefixed
+  /// (`asset:assets/...`), or an absolute file path picked by the owner.
   final String? asset;
   final double width;
   final double height;
@@ -35,14 +39,29 @@ class VehiclePhoto extends StatelessWidget {
         color: palette.surface.withValues(alpha: 0.72),
       ),
     );
-    final image = asset == null
+    final source = asset == null || asset!.isEmpty
+        ? null
+        : asset!.startsWith('asset:')
+        ? asset!.substring(6)
+        : asset;
+    final cacheWidth = (MediaQuery.sizeOf(context).width * 2).round();
+    final image = source == null
         ? fallback
-        : Image.asset(
-            asset!,
+        : source.startsWith('assets/')
+        ? Image.asset(
+            source,
             width: width,
             height: height,
             fit: BoxFit.cover,
-            cacheWidth: (MediaQuery.sizeOf(context).width * 2).round(),
+            cacheWidth: cacheWidth,
+            errorBuilder: (_, _, _) => fallback,
+          )
+        : Image.file(
+            File(source),
+            width: width,
+            height: height,
+            fit: BoxFit.cover,
+            cacheWidth: cacheWidth,
             errorBuilder: (_, _, _) => fallback,
           );
     if (radius <= 0) return image;

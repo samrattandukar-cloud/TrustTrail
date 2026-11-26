@@ -15,14 +15,17 @@ import '../../core/widgets/tt_odometer_chart.dart';
 import '../../core/widgets/tt_pills.dart';
 import '../../core/widgets/tt_status_banner.dart';
 import '../../core/widgets/tt_timeline.dart';
+import '../../data/repositories/repositories.dart';
 import '../../domain/completeness.dart';
 import '../../domain/odometer_analysis.dart';
+import '../garage/garage_controller.dart';
 import '../records/record_detail_screen.dart';
 import '../records/record_form_screen.dart';
 import '../report/report_prepare_screen.dart';
 import 'section_labels.dart';
 import 'vehicle_bundle.dart';
 import 'vehicle_photo.dart';
+import 'vehicle_photo_service.dart';
 
 class VehicleDetailScreen extends ConsumerWidget {
   const VehicleDetailScreen({super.key, required this.vehicleId});
@@ -134,6 +137,11 @@ class _Content extends StatelessWidget {
                       onPressed: () => Navigator.of(context).maybePop(),
                     ),
                     const Spacer(),
+                    _PhotoEditButton(
+                      vehicleId: vehicle.id,
+                      hasPhoto: vehicle.photoAsset != null,
+                    ),
+                    const SizedBox(width: 8),
                     TtCircleIconButton(
                       icon: Icons.qr_code_2_rounded,
                       tooltip: l10n.shareReport,
@@ -403,6 +411,130 @@ class _Content extends StatelessWidget {
       MaterialPageRoute<void>(
         builder: (_) => ReportPrepareScreen(vehicleId: vehicleId),
       ),
+    );
+  }
+}
+
+class _PhotoEditButton extends ConsumerStatefulWidget {
+  const _PhotoEditButton({required this.vehicleId, required this.hasPhoto});
+
+  final String vehicleId;
+  final bool hasPhoto;
+
+  @override
+  ConsumerState<_PhotoEditButton> createState() => _PhotoEditButtonState();
+}
+
+class _PhotoEditButtonState extends ConsumerState<_PhotoEditButton> {
+  var _busy = false;
+
+  void _refresh() {
+    ref.invalidate(vehicleBundleProvider(widget.vehicleId));
+    ref.invalidate(garageProvider);
+    ref.invalidate(garageSummaryProvider);
+  }
+
+  Future<void> _save(String? path) async {
+    setState(() => _busy = true);
+    try {
+      await ref
+          .read(vehicleRepositoryProvider)
+          .setPhoto(widget.vehicleId, path);
+      _refresh();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(context.l10n.uploadFailed)));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _pick(VehiclePhotoSource source) async {
+    setState(() => _busy = true);
+    try {
+      final path = await VehiclePhotoService.pick(source);
+      if (path == null) {
+        if (mounted) setState(() => _busy = false);
+        return;
+      }
+      await _save(path);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(context.l10n.uploadFailed)));
+    }
+  }
+
+  Future<void> _sheet() async {
+    final l10n = context.l10n;
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_camera_outlined),
+                title: Text(l10n.evidenceFromCamera),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pick(VehiclePhotoSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library_outlined),
+                title: Text(l10n.evidenceFromGallery),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pick(VehiclePhotoSource.gallery);
+                },
+              ),
+              if (widget.hasPhoto)
+                ListTile(
+                  leading: const Icon(Icons.delete_outline_rounded),
+                  title: Text(l10n.removePhoto),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _save(null);
+                  },
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = context.palette;
+    final l10n = context.l10n;
+    if (_busy) {
+      return Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: palette.surface,
+          shape: BoxShape.circle,
+          border: Border.all(color: palette.border),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(13),
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
+      );
+    }
+    return TtCircleIconButton(
+      icon: widget.hasPhoto
+          ? Icons.photo_camera_rounded
+          : Icons.add_a_photo_rounded,
+      tooltip: widget.hasPhoto ? l10n.changePhoto : l10n.addPhoto,
+      onPressed: _sheet,
     );
   }
 }

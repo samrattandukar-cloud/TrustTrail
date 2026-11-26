@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import '../../core/l10n/field_errors.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_shapes.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/validators.dart';
@@ -19,6 +20,8 @@ import '../auth/session.dart';
 import '../common/success_screen.dart';
 import '../garage/garage_controller.dart';
 import 'section_labels.dart';
+import 'vehicle_photo.dart';
+import 'vehicle_photo_service.dart';
 
 class AddVehicleScreen extends ConsumerStatefulWidget {
   const AddVehicleScreen({super.key});
@@ -44,6 +47,8 @@ class _AddVehicleScreenState extends ConsumerState<AddVehicleScreen> {
 
   var _step = 0;
   var _busy = false;
+  var _photoBusy = false;
+  String? _photoPath;
   String _fuel = 'Petrol';
   String _transmission = 'Manual';
   String _province = 'Bagmati';
@@ -84,6 +89,63 @@ class _AddVehicleScreenState extends ConsumerState<AddVehicleScreen> {
     }
   }
 
+  Future<void> _pickPhoto(VehiclePhotoSource source) async {
+    setState(() => _photoBusy = true);
+    try {
+      final path = await VehiclePhotoService.pick(source);
+      if (path != null && mounted) setState(() => _photoPath = path);
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(context.l10n.uploadFailed)));
+    } finally {
+      if (mounted) setState(() => _photoBusy = false);
+    }
+  }
+
+  Future<void> _photoSheet() async {
+    final l10n = context.l10n;
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_camera_outlined),
+                title: Text(l10n.evidenceFromCamera),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pickPhoto(VehiclePhotoSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library_outlined),
+                title: Text(l10n.evidenceFromGallery),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _pickPhoto(VehiclePhotoSource.gallery);
+                },
+              ),
+              if (_photoPath != null)
+                ListTile(
+                  leading: const Icon(Icons.delete_outline_rounded),
+                  title: Text(l10n.removePhoto),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    setState(() => _photoPath = null);
+                  },
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<void> _save() async {
     final user = ref.read(sessionProvider).value?.user;
     if (user == null) return;
@@ -106,6 +168,7 @@ class _AddVehicleScreenState extends ConsumerState<AddVehicleScreen> {
             : _chassis.text.trim(),
         engineMasked: _engine.text.trim().isEmpty ? null : _engine.text.trim(),
         initialOdometer: int.tryParse(_odometer.text.trim()) ?? 0,
+        photoAsset: _photoPath,
         createdAt: DateTime.now(),
       );
       await ref.read(vehicleRepositoryProvider).insert(vehicle);
@@ -248,6 +311,54 @@ class _AddVehicleScreenState extends ConsumerState<AddVehicleScreen> {
       child: ListView(
         padding: const EdgeInsets.all(TtSpace.page),
         children: [
+          TtCard(
+            padding: EdgeInsets.zero,
+            child: Column(
+              children: [
+                if (_photoPath != null)
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(TtRadius.card),
+                        ),
+                        child: VehiclePhoto(asset: _photoPath, height: 150),
+                      ),
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: TtCircleIconButton(
+                          icon: Icons.close_rounded,
+                          tooltip: l10n.removePhoto,
+                          filled: true,
+                          onPressed: () => setState(() => _photoPath = null),
+                        ),
+                      ),
+                    ],
+                  ),
+                ListTile(
+                  leading: _photoBusy
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Icon(
+                          _photoPath == null
+                              ? Icons.add_a_photo_outlined
+                              : Icons.photo_camera_outlined,
+                          color: palette.primary,
+                        ),
+                  title: Text(
+                    _photoPath == null ? l10n.addPhoto : l10n.changePhoto,
+                  ),
+                  subtitle: Text(l10n.vehiclePhotoHint),
+                  onTap: _photoBusy ? null : _photoSheet,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: TtSpace.x4),
           TtTextField(
             label: l10n.make,
             hint: 'Honda',
